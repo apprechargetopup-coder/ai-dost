@@ -115,5 +115,5 @@ TAGS (system process karega, user nahi dekhega):
     console.error('Chat API Error:', err);
     return res.status(500).json({ error: 'Server error' });
   }
-                                                          }
+}
   
