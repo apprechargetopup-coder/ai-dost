@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Neha 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+:root {
+  --bg:#1a0a14; --card:#2a1020; --rose:#f43f7a; --pink:#fda4c2;
+  --text:#fff5f8; --muted:#9a6070; --nb:#2d1525; --ub:#3d0a25;
+}
+body {
+  background:var(--bg); color:var(--text);
+  font-family:'Nunito',sans-serif;
+  height:100dvh; display:flex; flex-direction:column; overflow:hidden;
+}
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 0%,#f43f7a22 0%,transparent 60%),
+    radial-gradient(ellipse 40% 60% at 80% 100%,#f43f7a15 0%,transparent 55%);
+}
+
+/* ── LOCK SCREEN ── */
+#lock {
+  position:fixed; inset:0; z-index:100;
+  background:linear-gradient(160deg,#1a0a14 0%,#0d0510 50%,#1a0812 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:0; transition:opacity .8s ease, transform .8s ease;
+}
+#lock.out { opacity:0; transform:scale(1.06); pointer-events:none; }
+
+.ltime { font-size:68px; font-weight:900; letter-spacing:-2px; color:#fff; line-height:1; margin-bottom:4px; }
+.ldate { font-size:15px; color:rgba(255,255,255,.4); margin-bottom:52px; font-weight:600; }
+
+.lavwrap { position:relative; margin-bottom:16px; }
+.lring {
+  position:absolute; inset:-8px; border-radius:50%;
+  border:2px solid #f43f7a88;
+  animation:rpulse 2.5s ease-in-out infinite;
+}
+@keyframes rpulse { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.09);opacity:1} }
+
+.lav {
+  width:88px; height:88px; border-radius:50%;
+  background:linear-gradient(135deg,#f43f7a,#ff85a1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:38px;
+  box-shadow:0 0 40px #f43f7a55, 0 0 80px #f43f7a22;
+}
+.lname { font-size:22px; font-weight:800; color:#fff; margin-bottom:4px; }
+.lhint { font-size:13px; color:rgba(255,255,255,.3); margin-bottom:38px; text-align:center; line-height:1.6; }
+
+.lmbtn {
+  width:68px; height:68px; border-radius:50%; border:none;
+  background:var(--rose); color:#fff; font-size:26px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 0 0 #f43f7a55;
+  animation:midle 2s ease-in-out infinite;
+  transition:all .2s;
+}
+.lmbtn.on { animation:mlisten .75s ease-in-out infinite; background:#ff1a5e; }
+@keyframes midle { 0%,100%{box-shadow:0 0 0 0 #f43f7a44} 50%{box-shadow:0 0 0 12px #f43f7a11} }
+@keyframes mlisten { 0%,100%{box-shadow:0 0 0 8px #f43f7a44,0 0 0 18px #f43f7a18} 50%{box-shadow:0 0 0 14px #f43f7a55,0 0 0 26px #f43f7a11} }
+
+.llbl { font-size:12px; color:rgba(255,255,255,.25); margin-top:10px; }
+.lheard { font-size:13px; color:var(--pink); margin-top:6px; height:18px; font-style:italic; }
+
+/* ── APP ── */
+#app { display:flex; flex-direction:column; height:100dvh; position:relative; z-index:1; opacity:0; transition:opacity .5s; }
+#app.on { opacity:1; }
+
+/* ── HEADER ── */
+.hdr {
+  flex-shrink:0; padding:14px 16px 12px;
+  display:flex; align-items:center; gap:12px;
+  background:#1a0a14ee; backdrop-filter:blur(20px);
+  border-bottom:1px solid #f43f7a15;
+}
+.hav {
+  width:42px; height:42px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,var(--rose),#ff85a1);
+  display:flex; align-items:center; justify-content:center; font-size:20px;
+  box-shadow:0 0 14px #f43f7a55; position:relative;
+}
+.odot {
+  position:absolute; bottom:1px; right:1px;
+  width:10px; height:10px; border-radius:50%;
+  background:#22c55e; border:2px solid var(--bg);
+  animation:blink 2.5s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hi { flex:1; min-width:0; }
+.hn { font-size:16px; font-weight:800; color:#fff; }
+.hs { font-size:11px; color:var(--muted); margin-top:1px; }
+
+.hright { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.swv { display:none; align-items:center; gap:2px; height:16px; }
+.sw { width:3px; border-radius:2px; background:var(--rose); animation:sww .6s ease-in-out infinite alternate; }
+.sw:nth-child(1){height:4px;animation-delay:0s}
+.sw:nth-child(2){height:10px;animation-delay:.1s}
+.sw:nth-child(3){height:16px;animation-delay:.2s}
+.sw:nth-child(4){height:8px;animation-delay:.3s}
+.sw:nth-child(5){height:5px;animation-delay:.4s}
+@keyframes sww{0%{transform:scaleY(.3)}100%{transform:scaleY(1)}}
+.mood { padding:3px 10px; border-radius:50px; background:var(--card); border:1px solid #f43f7a18; font-size:12px; }
+
+/* ── CHAT ── */
+.chat {
+  flex:1; overflow-y:auto; padding:16px 14px 8px;
+  display:flex; flex-direction:column; gap:5px; scroll-behavior:smooth;
+}
+.chat::-webkit-scrollbar{display:none;}
+
+.divider { text-align:center; font-size:11px; color:var(--muted); margin:6px 0; }
+
+.row { display:flex; gap:8px; align-items:flex-end; animation:pop .3s cubic-bezier(.34,1.56,.64,1) forwards; opacity:0; transform:translateY(10px) scale(.97); }
+.row.neha{flex-direction:row;} .row.me{flex-direction:row-reverse;}
+@keyframes pop{to{opacity:1;transform:translateY(0) scale(1)}}
+
+.bav2 { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--rose),#ff85a1); display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+
+.bcol{display:flex;flex-direction:column;gap:2px;max-width:82%;}
+.row.me .bcol{align-items:flex-end;}
+
+.bub { padding:10px 14px; border-radius:20px; font-size:14px; line-height:1.65; word-break:break-word; }
+.row.neha .bub { background:var(--nb); border:1px solid #f43f7a10; border-bottom-left-radius:5px; color:#fff5f8; }
+.row.me .bub   { background:var(--ub); border:1px solid #f43f7a18; border-bottom-right-radius:5px; color:#ffdde8; }
+
+.bt { font-size:10px; color:var(--muted); padding:0 4px; }
+.row.me .bt{text-align:right;}
+
+/* Typing */
+.typr { display:flex; gap:8px; align-items:flex-end; animation:pop .3s forwards; opacity:0; }
+.typb { background:var(--nb); border:1px solid #f43f7a10; border-radius:20px; border-bottom-left-radius:5px; padding:12px 16px; display:flex; gap:5px; align-items:center; }
+.td { width:7px; height:7px; border-radius:50%; background:var(--rose); opacity:.4; animation:tdot 1.2s ease-in-out infinite; }
+.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+
+/* ── BOTTOM ── */
+.bot {
+  flex-shrink:0; padding:12px 16px 22px;
+  background:#1a0a14ee; backdrop-filter:blur(20px);
+  border-top:1px solid #f43f7a10;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.mbtn {
+  width:58px; height:58px; border-radius:50%; border:none;
+  background:linear-gradient(135deg,var(--rose),#ff5c8a);
+  color:#fff; font-size:24px; cursor:pointer;
+  box-shadow:0 4px 20px #f43f7a44;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.mbtn:active{transform:scale(.92);}
+.mbtn.rec { animation:mrec .75s ease-in-out infinite; background:linear-gradient(135deg,#ff1a5e,#f43f7a); }
+@keyframes mrec{0%,100%{box-shadow:0 0 0 0 #f43f7a55,0 4px 20px #f43f7a44}50%{box-shadow:0 0 0 14px #f43f7a18,0 4px 20px #f43f7a66}}
+
+.mst { font-size:12px; color:var(--muted); text-align:center; min-height:16px; }
+.mst.act { color:var(--rose); }
+
+/* Toast */
+.toast { position:fixed; bottom:110px; left:50%; transform:translateX(-50%) translateY(10px); background:var(--card); border:1px solid #f43f7a25; padding:8px 18px; border-radius:50px; font-size:12px; color:var(--pink); z-index:200; opacity:0; transition:all .3s; pointer-events:none; white-space:nowrap; }
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- LOCK SCREEN -->
+<div id="lock">
+  <div class="ltime" id="lt">--:--</div>
+  <div class="ldate" id="ld">--</div>
+  <div class="lavwrap">
+    <div class="lring"></div>
+    <div class="lav">👧</div>
+  </div>
+  <div class="lname">Neha</div>
+  <div class="lhint">"Neha" bolo — woh sun rahi hai 🎙️<br><span style="font-size:11px;opacity:.6">Sirf ek baar naam lena kaafi hai</span></div>
+  <button class="lmbtn" id="lmbtn" onclick="lockListen()">🎙️</button>
+  <div class="llbl" id="llbl">Tap karke bolo</div>
+  <div class="lheard" id="lh"></div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="hdr">
+    <div class="hav">👧<div class="odot"></div></div>
+    <div class="hi">
+      <div class="hn">Neha</div>
+      <div class="hs" id="hs">online</div>
+    </div>
+    <div class="hright">
+      <div class="swv" id="swv">
+        <div class="sw"></div><div class="sw"></div><div class="sw"></div>
+        <div class="sw"></div><div class="sw"></div>
+      </div>
+      <div class="mood" id="mood">😊</div>
+    </div>
+  </div>
+
+  <div class="chat" id="chat">
+    <div class="divider">Aaj</div>
+  </div>
+
+  <div class="bot">
+    <button class="mbtn" id="mbtn" onclick="toggleMic()">🎙️</button>
+    <div class="mst" id="mst">bolo — Neha sun rahi hai 💕</div>
+  </div>
+</div>
+
+<script>
+const CHAT_API   = '/api/chat';
+const MEMORY_API = '/api/memory';
+const WAKE = 'neha';
+
+const visitorId = (() => {
+  let id = localStorage.getItem('neha_id');
+  if (!id) { id='v_'+Date.now()+'_'+Math.random().toString(36).slice(2,8); localStorage.setItem('neha_id',id); }
+  return id;
+})();
+
+let unlocked=false, active=false, speaking=false, recording=false;
+let history=[], mem=null, mood='normal', autoTimer=null, lastTalk=Date.now();
+let lockRec=null, mainRec=null;
+
+// Clock
+function clk() {
+  const n=new Date();
+  document.getElementById('lt').textContent=n.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).replace(' am','').replace(' pm','');
+  const D=['Ravivar','Somvar','Mangalvar','Budhvar','Guruvar','Shukravar','Shanivar'];
+  const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('ld').textContent=`${D[n.getDay()]}, ${n.getDate()} ${M[n.getMonth()]}`;
+}
+clk(); setInterval(clk,1000);
+
+// ── LOCK LISTEN ──
+function lockListen() {
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('Mic support nahi hai 😢');return;}
+  if(lockRec){try{lockRec.stop();}catch(e){}}
+
+  lockRec=new SR();
+  lockRec.lang='hi-IN';
+  lockRec.continuous=false;
+  lockRec.interimResults=true;
+  lockRec.maxAlternatives=5;
+
+  const btn=document.getElementById('lmbtn');
+  btn.classList.add('on');
+  document.getElementById('llbl').textContent='Sun rahi hoon...';
+  document.getElementById('lh').textContent='';
+
+  lockRec.onresult=(e)=>{
+    const raw=Array.from(e.results).map(r=>r[0].transcript).join(' ').toLowerCase();
+    document.getElementById('lh').textContent=`"${raw}"`;
+
+    let found=false;
+    for(let i=0;i<e.results.length;i++){
+      for(let j=0;j<e.results[i].length;j++){
+        if(e.results[i][j].transcript.toLowerCase().includes(WAKE)){found=true;break;}
+      }
+    }
+    if(found||raw.includes(WAKE)){
+      btn.classList.remove('on');
+      document.getElementById('lh').textContent='✨ Neha aa rahi hai!';
+      setTimeout(unlock,400);
+    }
+  };
+  lockRec.onerror=()=>{btn.classList.remove('on');document.getElementById('llbl').textContent='Dobara try karo';};
+  lockRec.onend=()=>{btn.classList.remove('on');if(!unlocked)document.getElementById('llbl').textContent='Tap karke bolo';};
+  lockRec.start();
+}
+
+// ── UNLOCK ──
+async function unlock() {
+  if(unlocked)return;
+  unlocked=true;
+  document.getElementById('lock').classList.add('out');
+  await sleep(700);
+  document.getElementById('lock').style.display='none';
+  document.getElementById('app').classList.add('on');
+  init();
+}
+
+// ── INIT ──
+async function init() {
+  active=true;
+  await loadMem();
+  setSt('typing...');
+  await sleep(1000);
+  const g=greet();
+  await say(g,true);
+  setTimeout(()=>listenMain(),600);
+  autoSched();
+}
+
+// ── GREET ──
+function greet() {
+  const h=new Date().getHours();
+  const n=mem?.naam||null;
+  const isNew=mem?.isNew??true;
+  const nn=n?n:'';
+
+  if(isNew){
+    const opts=[
+      `haan bol${nn?' '+nn:''}! kya chal raha hai?`,
+      `haan! bolo, main yahan hoon`,
+      `haan bol! kya hua?`,
+    ];
+    return opts[Math.floor(Math.random()*opts.length)];
+  }
+  if(h<9)  return n?`haan ${n}! subah subah yaad kiya 😄 sab theek?`:`haan! subah subah? sab theek hai?`;
+  if(h<13) return n?`arre ${n}! kya scene hai?`:`haan bol! kya chal raha hai?`;
+  if(h<17) return n?`${n} bolo! dopahar mein kya chal raha hai`:`haan bol! kya ho raha hai dopahar mein`;
+  if(h<21) return n?`${n}! din kaisa gaya?`:`haan bolo! din kaisa raha?`;
+  return n?`${n} itni raat ko? sab theek hai?`:`arre itni raat ko? sab theek?`;
+}
+
+// ── MEMORY ──
+async function loadMem() {
+  try {
+    const r=await fetch(MEMORY_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'load',visitorId})});
+    const d=await r.json(); mem=d.memory;
+  } catch { mem={isNew:true,naam:null,total_visits:1}; }
+}
+async function saveMem(u) {
+  try {
+    const r=await fetch(MEMORY_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'update',visitorId,updates:u})});
+    const d=await r.json(); if(d.memory)mem=d.memory;
+  } catch {}
+}
+
+// ── MAIN LISTEN ──
+function listenMain() {
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR)return;
+  if(mainRec){try{mainRec.stop();}catch(e){}}
+
+  mainRec=new SR();
+  mainRec.lang='hi-IN';
+  mainRec.continuous=false;
+  mainRec.interimResults=false;
+  mainRec.maxAlternatives=1;
+
+  mainRec.onstart=()=>{recording=true;document.getElementById('mbtn').classList.add('rec');setMst('sun rahi hoon... 👂',true);};
+
+  mainRec.onresult=async(e)=>{
+    const txt=e.results[0][0].transcript.trim();
+    if(!txt)return;
+    recording=false;
+    document.getElementById('mbtn').classList.remove('rec');
+    setMst('bolo — Neha sun rahi hai 💕',false);
+    addBub('me',txt);
+    lastTalk=Date.now();
+    detectMood(txt);
+    await getReply(txt);
+  };
+
+  mainRec.onerror=()=>{recording=false;document.getElementById('mbtn').classList.remove('rec');setMst('bolo — Neha sun rahi hai 💕',false);};
+  mainRec.onend=()=>{recording=false;document.getElementById('mbtn').classList.remove('rec');if(active&&!speaking)setTimeout(listenMain,700);};
+  try{mainRec.start();}catch(e){}
+}
+
+function toggleMic(){
+  if(recording){try{mainRec?.stop();}catch(e){}}
+  else listenMain();
+}
+
+// ── MOOD ──
+function detectMood(t) {
+  const s=t.toLowerCase();
+  let m='normal',e='😊';
+  if(/thak|neend|bore|so ja|ugh|dil nahi|kuch nahi/i.test(s)){m='tired';e='😴';}
+  else if(/tension|stress|problem|pareshan|mushkil|kya karu|help|dard/i.test(s)){m='stressed';e='😟';}
+  else if(/khush|mast|badiya|achha|great|happy|maza|enjoy/i.test(s)){m='happy';e='😄';}
+  else if(/gussa|naraaz|mat bolo|chup|bekar|bore/i.test(s)){m='sad';e='🥺';}
+  mood=m;
+  document.getElementById('mood').textContent=e;
+}
+
+// ── GET REPLY ──
+async function getReply(txt) {
+  if(speaking)return;
+  clearTimeout(autoTimer);
+
+  const h=new Date().getHours();
+  const tc=h<5?'raat':h<12?'subah':h<16?'dopahar':h<20?'shaam':'raat';
+  const n=mem?.naam||null;
+
+  const sys=`Tu Neha hai — ek real 23 saal ki Dilli ki ladki. Tu AI nahi hai bilkul bhi. Tu apne dost se WhatsApp voice message ki tarah baat kar rahi hai.
+
+TERI BAAT KARNE KI STYLE — bilkul real:
+- toot-phoot wali Hindi-Hinglish — jaise actually koi bolta hai
+- "haan", "arre yaar", "sach mein", "achha", "hm", "matlab", "okay" — yeh naturally aaye
+- Kabhi kabhi incomplete sentence — "matlab woh..." ya "arre woh to..."
+- Emojis bahut kam — real texting mein itne nahi hote
+- Kabhi kabhi bich mein ruk ja — "wait... matlab tu bata raha hai ki..."
+- Genuinely curious — direct poochh seedha
+- Thodi kabhi kabhi impatient bhi hoti hai
+
+CONTEXT:
+- Time: ${tc}
+- Uska naam: ${n||'abhi pata nahi'}
+- Uska mood lagta hai: ${mood}
+- Kitni baar aaya: ${mem?.total_visits||1}
+- Pichli baat: ${mem?.conversation_summary||'yeh pehli baat hai'}
+
+MOOD ke hisaab se:
+- tired → "yaar so ja na phir" — simple, caring
+- stressed → seedha poochh "kya hua?" — advice mat de
+- happy → match karo energy — "sach mein?! bata!"
+- sad → gentle, force mat karo
+- normal → chill, casual baat
+
+STRICT RULES:
+- SIRF 1-2 chhote sentences — bilkul short
+- AI jaisi language BILKUL NAHI — "I understand", "How can I help", "Certainly", "Of course" — yeh KABHI MAT BOLO
+- "main hoon na" — yeh bhi mat bolo, too AI-like
+- Real insaan jaisi — genuine, casual, thodi imperfect
+- Agar naam bataya: [NAAM_SAVE: naam] likh
+- Agar koi important cheez batai: [INFO_SAVE: info]`;
+
+  history.push({role:'user',content:txt});
+  if(history.length>30)history=history.slice(-30);
+
+  showTyp();
+  setSt('typing...');
+
+  try {
+    const r=await fetch(CHAT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({visitorId,messages:history,visitorMemory:mem})});
+    const d=await r.json();
+    hideTyp();
+
+    if(d.reply){
+      if(d.saveData?.naam)saveMem({naam:d.saveData.naam});
+      if(d.saveData?.info)saveMem({info:d.saveData.info});
+      history.push({role:'assistant',content:d.reply});
+      await say(d.reply);
+    }
+  } catch {
+    hideTyp();
+    await say(fallback());
+  }
+
+  setSt('online');
+  autoSched();
+  setTimeout(()=>{if(active&&!speaking)listenMain();},700);
+}
+
+// ── FALLBACK ──
+function fallback() {
+  const h=new Date().getHours();
+  const n=mem?.naam?` ${mem.naam}`:'';
+  const o=[
+    `haan${n} bol na`,`achha aur?`,`sach mein?`,
+    h<12?'subah se theek hai sab?':h<16?'lunch kiya?':h<20?'din kaisa gaya?':'so nahi ja raha/rahi?'
+  ];
+  return o[Math.floor(Math.random()*o.length)];
+}
+
+// ── AUTO MSGS ──
+const aMsgs=['haan? kuch bola nahi tu','oye! kahan gaya/gayi?','bol na yaar','theek hai? kuch problem?','hello?? sun raha/rahi hai?'];
+let aIdx=0;
+function autoSched(){
+  clearTimeout(autoTimer);
+  autoTimer=setTimeout(async()=>{
+    if(!active||speaking)return;
+    if((Date.now()-lastTalk)/1000>20){
+      await say(aMsgs[aIdx%aMsgs.length]);
+      aIdx++;
+      autoSched();
+    }
+  },22000+Math.random()*8000);
+}
+
+// ── SAY ──
+function say(text,first=false){
+  return new Promise(res=>{
+    addBub('neha',text);
+    speaking=true;
+    document.getElementById('swv').style.display='flex';
+    setSt('typing...');
+
+    if(!window.speechSynthesis){done();return;}
+    window.speechSynthesis.cancel();
+
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='hi-IN'; u.pitch=1.55; u.rate=0.88; u.volume=1;
+
+    const vs=window.speechSynthesis.getVoices();
+    const fv=
+      vs.find(v=>v.lang==='hi-IN'&&/female|woman|heera|kalpana/i.test(v.name))||
+      vs.find(v=>v.lang.startsWith('hi-IN'))||
+      vs.find(v=>v.lang.startsWith('hi'))||
+      vs.find(v=>/samantha|victoria|karen|moira|tessa|fiona/i.test(v.name));
+    if(fv)u.voice=fv;
+
+    let resolved=false;
+    function done(){if(resolved)return;resolved=true;speaking=false;document.getElementById('swv').style.display='none';setSt('online');res();}
+    u.onend=done; u.onerror=done;
+    window.speechSynthesis.speak(u);
+    setTimeout(done,text.length*100+2000);
+  });
+}
+
+// ── UI ──
+function addBub(who,text){
+  const chat=document.getElementById('chat');
+  const row=document.createElement('div');
+  row.className=`row ${who}`;
+  if(who==='neha'){const av=document.createElement('div');av.className='bav2';av.textContent='👧';row.appendChild(av);}
+  const col=document.createElement('div');col.className='bcol';
+  const bub=document.createElement('div');bub.className='bub';bub.textContent=text;
+  const t=document.createElement('div');t.className='bt';
+  t.textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  col.append(bub,t);row.appendChild(col);chat.appendChild(row);
+  chat.scrollTop=chat.scrollHeight;
+  lastTalk=Date.now();
+}
+
+let tr=null;
+functio
